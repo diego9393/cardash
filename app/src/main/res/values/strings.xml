@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Car Dash</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="notification_text">Batería baja, conecte el móvil a una toma de corriente.</string>
+    <string name="notification_title">Car Dash</string>
+    <string name="notification_cargatit">Car Dash</string>
+    <string name="notification_cargatext">Batería al 95%, es recomendable no cargarla más.</string>
+</resources>
