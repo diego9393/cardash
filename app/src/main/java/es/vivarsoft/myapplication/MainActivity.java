@@ -44,6 +44,11 @@ public class MainActivity extends ActionBarActivity {
         establecerIU();
     }
 
+    @Override
+    public void onBackPressed() {
+        setContentView(R.layout.activity_main);
+    }
+
     public void showApps(View v){
         Intent i = new Intent(this, AppsListActivity.class);
         startActivity(i);
