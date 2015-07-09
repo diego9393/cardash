@@ -103,6 +103,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="false"
-        android:onClick="showApps" />
+        android:onClick="showApps"
+        android:background="@null" />
 
 </RelativeLayout>
