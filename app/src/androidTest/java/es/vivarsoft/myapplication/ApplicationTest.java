@@ -1,4 +1,4 @@
-package es.vivarsoft.carhub;
+package es.vivarsoft.myapplication;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

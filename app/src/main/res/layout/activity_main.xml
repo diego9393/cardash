@@ -1,80 +1,70 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:id="@+id/layout">
-
-    <TextClock
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textClock"
-        android:textSize="50dp"
-        android:layout_row="0"
-        android:layout_column="4"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:background="#90CAF9">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Versión: 1.0"
-        android:id="@+id/textView"
-        android:layout_row="18"
-        android:layout_column="4"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:text="Batería 0%"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textClock"
+        android:layout_alignLeft="@+id/imageButton5"
+        android:layout_alignStart="@+id/imageButton5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar nivel de batería"
+        android:id="@+id/button"
+        android:onClick="bateriaup"
+        android:layout_above="@+id/imageButton7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textClock"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="50dp" />
 
     <ImageButton
         android:layout_width="111dp"
         android:layout_height="111dp"
-        android:id="@+id/imageButton6"
-        android:layout_row="1"
-        android:layout_column="2"
-        android:src="@drawable/gplay"
-        android:onClick="openclock"
-        android:layout_marginTop="55dp"
-        android:layout_below="@+id/textClock"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/imageButton"
+        android:layout_marginTop="42dp"
+        android:src="@drawable/maps"
+        android:onClick="imageclick"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:layout_toStartOf="@+id/imageButton2" />
 
     <ImageButton
         android:layout_width="111dp"
         android:layout_height="111dp"
         android:id="@+id/imageButton2"
-        android:src="@drawable/web"
-        android:onClick="clickweb"
-        android:layout_row="1"
-        android:layout_column="1"
-        android:layout_below="@+id/imageButton6"
-        android:layout_toEndOf="@+id/imageButton3"
-        android:layout_alignLeft="@+id/imageButton6"
-        android:layout_alignStart="@+id/imageButton6" />
-
-    <ImageButton
-        android:layout_width="111dp"
-        android:layout_height="111dp"
-        android:id="@+id/imageButton3"
-        android:src="@drawable/whatsapp"
-        android:onClick="clickwhatsapp"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:layout_below="@+id/imageButton6"
+        android:src="@drawable/camera"
+        android:onClick="clickcam"
+        android:layout_alignTop="@+id/imageButton"
         android:layout_alignLeft="@+id/imageButton5"
         android:layout_alignStart="@+id/imageButton5" />
 
     <ImageButton
         android:layout_width="111dp"
         android:layout_height="111dp"
-        android:id="@+id/imageButton5"
-        android:src="@drawable/camera"
-        android:onClick="clickcam"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_alignTop="@+id/imageButton6"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/imageButton3"
+        android:src="@drawable/gplay"
+        android:onClick="openclock"
+        android:layout_above="@+id/imageButton6"
+        android:layout_alignLeft="@+id/imageButton6"
+        android:layout_alignStart="@+id/imageButton6" />
 
     <ImageButton
         android:layout_width="111dp"
@@ -82,44 +72,37 @@
         android:id="@+id/imageButton4"
         android:src="@drawable/music"
         android:onClick="clickmusic"
-        android:layout_row="0"
-        android:layout_column="1"
         android:layout_below="@+id/imageButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toLeftOf="@+id/imageButton5"
+        android:layout_toStartOf="@+id/imageButton5" />
 
     <ImageButton
         android:layout_width="111dp"
         android:layout_height="111dp"
-        android:id="@+id/imageButton"
-        android:onClick="imageclick"
-        android:src="@drawable/maps"
-        android:layout_row="0"
-        android:layout_column="2"
-        android:layout_alignTop="@+id/imageButton5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Batería: 0%"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textClock"
+        android:id="@+id/imageButton5"
+        android:src="@drawable/whatsapp"
+        android:onClick="clickwhatsapp"
+        android:layout_alignTop="@+id/imageButton6"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Actualizar estado de la batería"
-        android:id="@+id/button1"
+    <ImageButton
+        android:layout_width="111dp"
+        android:layout_height="111dp"
+        android:id="@+id/imageButton6"
+        android:src="@drawable/web"
+        android:onClick="clickweb"
         android:layout_below="@+id/imageButton2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageButton2"
-        android:layout_alignEnd="@+id/imageButton2"
-        android:onClick="batclick" />
+        android:layout_toRightOf="@+id/imageButton5"
+        android:layout_toEndOf="@+id/imageButton5" />
 
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageButton7"
+        android:src="@drawable/ic_allapps_pressed"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false"
+        android:onClick="showApps" />
 
 </RelativeLayout>

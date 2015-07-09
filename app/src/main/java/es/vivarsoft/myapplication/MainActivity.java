@@ -1,4 +1,4 @@
-package es.vivarsoft.carhub;
+package es.vivarsoft.myapplication;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -22,46 +22,49 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-
 public class MainActivity extends ActionBarActivity {
 
+    double level=-1;
+    private Button button;
+    private TextView textView2;
     private ImageButton imageButton;
     private ImageButton imageButton2;
     private ImageButton imageButton3;
     private ImageButton imageButton4;
     private ImageButton imageButton5;
     private ImageButton imageButton6;
-    private TextView button;
-    private Button button1;
-    double level=-1;
+    private ImageButton imageButton7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        establecerIU();
-
-        button=(TextView) findViewById(R.id.textView2);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getBatteryLevel();
+        establecerIU();
     }
 
-    public void establecerIU()
+    public void showApps(View v){
+        Intent i = new Intent(this, AppsListActivity.class);
+        startActivity(i);
+    }
+
+    /*Contruir interface*/
+    protected void establecerIU()
     {
+        button = (Button) findViewById(R.id.button);
+        textView2 = (TextView) findViewById(R.id.textView2);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         imageButton2 = (ImageButton) findViewById(R.id.imageButton2);
         imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
         imageButton4 = (ImageButton) findViewById(R.id.imageButton4);
         imageButton5 = (ImageButton) findViewById(R.id.imageButton5);
         imageButton6 = (ImageButton) findViewById(R.id.imageButton6);
-        button1 = (Button) findViewById(R.id.button1);
+        imageButton7 = (ImageButton) findViewById(R.id.imageButton7);
+
     }
 
-    //nivel de bateria
-    public void batclick(View v)
-    {
-        getBatteryLevel();
-    }
-
+    /*bateria*/
     private void getBatteryLevel() {
         BroadcastReceiver bc= new BroadcastReceiver() {
 
@@ -72,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
                 float batteryCapacity=intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
                 if(batteryLevel>0 && batteryCapacity>0 ){
                     level=(int) (batteryLevel*100)/  batteryCapacity;
-                    button.setText("Batería: " + level + " %");
+                    textView2.setText("Batería: " + level + " %");
                 }
 
                 if(level >= 95)
@@ -91,7 +94,13 @@ public class MainActivity extends ActionBarActivity {
         IntentFilter intentFilter =new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(bc, intentFilter);
     }
+    /*llamar bateria*/
+    public void bateriaup(View v)
+    {
+        getBatteryLevel();
+    }
 
+    /*notificacion carga de bateria*/
     public void notificacioncarga()
     {
         PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, ShowNotificationDetailActivity.class), 0);
@@ -140,7 +149,7 @@ public class MainActivity extends ActionBarActivity {
             e.printStackTrace();
         }
     }
-    //fin nivel de bateria
+    /*fin bateria*/
 
     public void openclock(View v)
     {
@@ -178,8 +187,6 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         startActivityForResult(intent, 0);
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -189,30 +196,22 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
         switch (item.getItemId()) {
-            case R.id.add:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://vivarsoft.tk"));
-                startActivity(browserIntent);
+            case android.R.id.home:
+                setContentView(R.layout.activity_main);
                 return true;
-            case R.id.search:
-                browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://www.facebook.com/quintusscipiocelsa"));
-                startActivity(browserIntent);
-                return true;
-            case R.id.edit:
-                 browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://twitter.com/diego9393"));
-                startActivity(browserIntent);
-                return true;
-            case R.id.delete:
-                 browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://github.com/diego9393"));
-                startActivity(browserIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        if (id == R.id.action_settings) {
+            setContentView(R.layout.acercade);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
