@@ -21,8 +21,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.pushbots.push.Pushbots;
-
 public class MainActivity extends ActionBarActivity {
 
     double level=-1;
@@ -53,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
         this.registerReceiver(this.myBatteryReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         /*fin bateria*/
-        Pushbots.sharedInstance().init(this);
     }
 
     public void showApps(View v){
@@ -216,8 +213,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void clickmusic(View v)
     {
-        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.music");
-        startActivity(LaunchIntent);
+        Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
+        startActivityForResult(intent, 0);
     }
 
     public void clickcam (View v)

@@ -7,7 +7,7 @@
     <string name="notification_title">Simple car dash</string>
     <string name="notification_text">Batería al 25%, conecte el dispositivo a la corriente eléctrica.</string>
     <string name="detalles">Simple car dash es una sencilla aplicación con las aplicaciones y funciones bśicas para usar nuestro smartphone en el vehíulo, además de contener nuestras aplicaciones instaladas también lo podemos definir como launcher por defecto.</string>
-    <string name="version">Versión: 1.0.2</string>
+    <string name="version">Versión: 1.0.3</string>
     <string name="title_activity_battery">battery</string>
 
     <string name="hello">Información de la batería</string>
