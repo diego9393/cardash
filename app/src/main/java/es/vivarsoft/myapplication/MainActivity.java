@@ -11,7 +11,6 @@ import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -31,8 +30,10 @@ public class MainActivity extends ActionBarActivity {
     private ImageButton imageButton5;
     private ImageButton imageButton6;
     private ImageButton imageButton7;
-    private TextView batteryLevel, batteryVoltage, batteryTemperature,
-            batteryTechnology, batteryStatus, batteryHealth;
+    private ImageButton imageButton8;
+    private ImageButton imageButton9;
+
+    private TextView batteryLevel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,11 +43,6 @@ public class MainActivity extends ActionBarActivity {
         IntentFilter intentFilter =new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         /*bateria*/
         batteryLevel = (TextView)findViewById(R.id.batterylevel);
-        batteryVoltage = (TextView)findViewById(R.id.batteryvoltage);
-        batteryTemperature = (TextView)findViewById(R.id.batterytemperature);
-        batteryTechnology = (TextView)findViewById(R.id.batterytechology);
-        batteryStatus = (TextView)findViewById(R.id.batterystatus);
-        batteryHealth = (TextView)findViewById(R.id.batteryhealth);
 
         this.registerReceiver(this.myBatteryReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -68,44 +64,6 @@ public class MainActivity extends ActionBarActivity {
             if (arg1.getAction().equals(Intent.ACTION_BATTERY_CHANGED)){
                 batteryLevel.setText("Batería: "
                         + String.valueOf(arg1.getIntExtra("level", 0)) + "%");
-                batteryVoltage.setText("Voltaje: "
-                        + String.valueOf((float)arg1.getIntExtra("voltage", 0)/1000) + "V");
-                batteryTemperature.setText("Temperatura: "
-                        + String.valueOf((float)arg1.getIntExtra("temperature", 0)/10) + "c");
-                batteryTechnology.setText("Tecnología: " + arg1.getStringExtra("technology"));
-
-                int status = arg1.getIntExtra("status", BatteryManager.BATTERY_STATUS_UNKNOWN);
-                String strStatus;
-                if (status == BatteryManager.BATTERY_STATUS_CHARGING){
-                    strStatus = "Cargando...";
-                } else if (status == BatteryManager.BATTERY_STATUS_DISCHARGING){
-                    strStatus = "Descargando";
-                } else if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING){
-                    strStatus = "Sin cargar";
-                } else if (status == BatteryManager.BATTERY_STATUS_FULL){
-                    strStatus = "Entera";
-                } else {
-                    strStatus = "Desconocida";
-                }
-                batteryStatus.setText("Status: " + strStatus);
-
-                int health = arg1.getIntExtra("health", BatteryManager.BATTERY_HEALTH_UNKNOWN);
-                String strHealth;
-                if (health == BatteryManager.BATTERY_HEALTH_GOOD){
-                    strHealth = "Buena";
-                } else if (health == BatteryManager.BATTERY_HEALTH_OVERHEAT){
-                    strHealth = "Temperatura alta";
-                } else if (health == BatteryManager.BATTERY_HEALTH_DEAD){
-                    strHealth = "Muerta";
-                } else if (health == BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE){
-                    strHealth = "Sobre voltaje";
-                } else if (health == BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE){
-                    strHealth = "Fallo desconocido";
-                } else{
-                    strHealth = "Desconocido";
-                }
-                batteryHealth.setText("Salud: " + strHealth);
-
                 /*int con la carga de la bateria*/
                 int baterialevel = arg1.getIntExtra("level", 0);
                 /*notificaciones*/
@@ -133,6 +91,9 @@ public class MainActivity extends ActionBarActivity {
         imageButton5 = (ImageButton) findViewById(R.id.imageButton5);
         imageButton6 = (ImageButton) findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) findViewById(R.id.imageButton7);
+        imageButton8 = (ImageButton) findViewById(R.id.imageButton8);
+        imageButton9 = (ImageButton) findViewById(R.id.imageButton9);
+
     }
 
     /*notificacion carga de bateria*/
@@ -186,6 +147,12 @@ public class MainActivity extends ActionBarActivity {
     }
     /*fin bateria*/
 
+    public void bateriaclick(View v)
+    {
+        Intent i = new Intent(this, bateria.class);
+        startActivity(i);
+    }
+
     public void openclock(View v)
     {
         Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.android.vending");
@@ -207,7 +174,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void clickwhatsapp(View v)
     {
-        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.whatsapp");
+        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.googlequicksearchbox");
         startActivity(LaunchIntent);
     }
 

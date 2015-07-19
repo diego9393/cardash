@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.whatsapp.SOMETHING_USEFUL" />
+                <action android:name="com.google.android.googlequicksearchbox.SOMETHING_USEFUL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -43,13 +43,18 @@
         <activity
             android:name=".AppsListActivity"
             android:theme="@style/AppTheme" >
-            <!--android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >-->
-    </activity>
 
+            <!-- android:theme="@android:style/Theme.NoTitleBar.Fullscreen" > -->
+        </activity>
         <activity
             android:name=".acerca"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_acerca" >
+            android:label="@string/title_activity_acerca"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".bateria"
+            android:label="@string/title_activity_bateria"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

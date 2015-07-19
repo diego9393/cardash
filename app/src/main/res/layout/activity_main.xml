@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
-    android:background="#90CAF9"
+    android:background="#ffffff"
     android:id="@+id/bateria">
 
     <TextClock
@@ -59,7 +59,7 @@
         android:layout_width="111dp"
         android:layout_height="111dp"
         android:id="@+id/imageButton5"
-        android:src="@drawable/whatsapp"
+        android:src="@drawable/now"
         android:onClick="clickwhatsapp"
         android:layout_alignTop="@+id/imageButton6"
         android:layout_centerHorizontal="true" />
@@ -94,63 +94,26 @@
         android:layout_below="@+id/textClock"
         android:layout_centerHorizontal="true" />
 
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Voltaje"
-        android:id="@+id/batteryvoltage"
-        android:layout_above="@+id/batteryhealth"
-        android:layout_alignLeft="@+id/imageButton6"
-        android:layout_alignStart="@+id/imageButton6" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Temperaruta: "
-        android:id="@+id/batterytemperature"
-        android:layout_below="@+id/batterystatus"
-        android:layout_alignLeft="@+id/batterystatus"
-        android:layout_alignStart="@+id/batterystatus" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Tecnología:"
-        android:id="@+id/batterytechology"
-        android:layout_below="@+id/textView2"
+        android:id="@+id/imageButton8"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:src="@drawable/atras"
+        android:background="@null"
+        android:onClick="bateriaclick" />
 
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Status: "
-        android:id="@+id/batterystatus"
-        android:layout_below="@+id/batterytechology"
-        android:layout_alignLeft="@+id/batterytechology"
-        android:layout_alignStart="@+id/batterytechology" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Salud:"
-        android:id="@+id/batteryhealth"
-        android:layout_alignTop="@+id/batterystatus"
-        android:layout_alignLeft="@+id/batteryvoltage"
-        android:layout_alignStart="@+id/batteryvoltage" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Estado de la batería"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/imageButton4"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/imageButton9"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="bateriaclick"
+        android:src="@drawable/adelante"
+        android:background="@null" />
 
 </RelativeLayout>
