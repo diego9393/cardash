@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +20,6 @@ public class bateria extends ActionBarActivity {
 
     private Button button;
     private ImageButton imageButton10;
-    private ImageButton imageButton11;
     private ImageButton imageButton12;
     private ImageView imageView;
     private TextView batteryLevel, batteryVoltage, batteryTemperature,
@@ -39,7 +39,6 @@ public class bateria extends ActionBarActivity {
         batteryStatus = (TextView)findViewById(R.id.batterystatus);
         batteryHealth = (TextView)findViewById(R.id.batteryhealth);
         imageButton10 = (ImageButton)findViewById(R.id.imageButton10);
-        imageButton11 = (ImageButton)findViewById(R.id.imageButton11);
         imageButton12 = (ImageButton)findViewById(R.id.imageButton12);
         imageView = (ImageView)findViewById(R.id.imageView);
 
@@ -199,6 +198,12 @@ public class bateria extends ActionBarActivity {
             Intent ad = new Intent(this, acerca.class);
             startActivity(ad);
             return true;
+        }
+
+        if (id == R.id.action_bateria)
+        {
+            Intent intent = new Intent(Settings.ACTION_BATTERY_SAVER_SETTINGS);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

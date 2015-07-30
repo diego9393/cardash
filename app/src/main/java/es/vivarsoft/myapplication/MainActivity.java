@@ -67,12 +67,12 @@ public class MainActivity extends ActionBarActivity {
                 /*int con la carga de la bateria*/
                 int baterialevel = arg1.getIntExtra("level", 0);
                 /*notificaciones*/
-                if(baterialevel >= 95)
+                if(baterialevel == 95)
                 {
                     notificacioncarga();
                 }
 
-                if(baterialevel <= 25)
+                if(baterialevel == 25)
                 {
                     showNotification();
                 }
@@ -151,6 +151,12 @@ public class MainActivity extends ActionBarActivity {
     {
         Intent i = new Intent(this, bateria.class);
         startActivity(i);
+    }
+
+    public void movimiento (View v)
+    {
+        Intent mov = new Intent(this, DeviceMovingSpeed.class);
+        startActivity(mov);
     }
 
     public void openclock(View v)
