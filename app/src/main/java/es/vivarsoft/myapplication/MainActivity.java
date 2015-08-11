@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -66,13 +67,14 @@ public class MainActivity extends ActionBarActivity {
                         + String.valueOf(arg1.getIntExtra("level", 0)) + "%");
                 /*int con la carga de la bateria*/
                 int baterialevel = arg1.getIntExtra("level", 0);
+                int status = arg1.getIntExtra("status", BatteryManager.BATTERY_STATUS_UNKNOWN);
                 /*notificaciones*/
-                if(baterialevel == 95)
+                if((baterialevel == 95) && (status == BatteryManager.BATTERY_STATUS_CHARGING))
                 {
                     notificacioncarga();
                 }
 
-                if(baterialevel == 25)
+                if((baterialevel == 25) && (status == BatteryManager.BATTERY_STATUS_DISCHARGING))
                 {
                     showNotification();
                 }
