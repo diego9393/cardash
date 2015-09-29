@@ -1,6 +1,10 @@
 package es.vivarsoft.myapplication;
 
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DeviceMovingSpeed extends ActionBarActivity {
     Context context;
@@ -23,6 +28,8 @@ public class DeviceMovingSpeed extends ActionBarActivity {
     private TextView textView11;
     private TextView textView12;
     private TextView textView13;
+    private TextView textView15;
+    private TextView textView16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,10 @@ public class DeviceMovingSpeed extends ActionBarActivity {
         textView11 = (TextView)findViewById(R.id.textView11);
         textView12 = (TextView)findViewById(R.id.textView12);
         textView13 = (TextView)findViewById(R.id.textView13);
+        textView15 = (TextView)findViewById(R.id.textView15);
+        textView16 = (TextView)findViewById(R.id.textView16);
 
+        /**/
         final LocationManager locationManager = (LocationManager) this
                 .getSystemService(Context.LOCATION_SERVICE);
 
@@ -51,14 +61,24 @@ public class DeviceMovingSpeed extends ActionBarActivity {
                 textView11.setText("Latitud: " + latituddouble);
                 textView12.setText("Longitud: " + longituddouble);
                 textView13.setText("Altitud: " + (int) location.getAltitude() + " Metros");
+                textView16.setText("Precisión: " + (int) location.getAccuracy() + " Metros");
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) { }
-            public void onProviderEnabled(String provider) { }
-            public void onProviderDisabled(String provider) { }
+            public void onProviderEnabled(String provider)
+            {
+                textView15.setText("Estado: GPS activado");
+            }
+            public void onProviderDisabled(String provider) {
+                textView15.setText("Estado: GPS desactivado");
+                Toast.makeText(getApplicationContext(),
+                        "Active el sensor GPS", Toast.LENGTH_LONG)
+                        .show();
+            }
 
         };
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        /**/
     }
 
     public void showApps(View v){
