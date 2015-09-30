@@ -67,10 +67,10 @@ public class DeviceMovingSpeed extends ActionBarActivity {
             public void onStatusChanged(String provider, int status, Bundle extras) { }
             public void onProviderEnabled(String provider)
             {
-                textView15.setText("Estado: GPS activado");
+                textView15.setText("GPS: activado");
             }
             public void onProviderDisabled(String provider) {
-                textView15.setText("Estado: GPS desactivado");
+                textView15.setText("GPS: desactivado");
                 Toast.makeText(getApplicationContext(),
                         "Active el sensor GPS", Toast.LENGTH_LONG)
                         .show();
