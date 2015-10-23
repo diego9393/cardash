@@ -5,11 +5,9 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/apps_list"
-        android:layout_width="wrap_content"
+    <GridView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@android:color/white">
-    </ListView>
-
+        android:id="@+id/apps_list"
+        android:numColumns="2" />
 </LinearLayout>

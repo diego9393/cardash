@@ -41,6 +41,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         establecerIU();
+
+        /*deep link*/
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        Uri data = intent.getData();
+        /*fin deep link*/
+
         IntentFilter intentFilter =new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         /*bateria*/
         batteryLevel = (TextView)findViewById(R.id.batterylevel);

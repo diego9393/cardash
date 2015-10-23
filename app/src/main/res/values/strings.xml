@@ -7,7 +7,7 @@
     <string name="notification_title">Car dash</string>
     <string name="notification_text">Batería al 25%, conecte el dispositivo a la corriente eléctrica.</string>
     <string name="detalles">Car dash es una sencilla aplicación con las aplicaciones y funciones bśicas para usar nuestro smartphone en el vehíulo, además de contener nuestras aplicaciones instaladas también lo podemos definir como launcher por defecto.</string>
-    <string name="version">Versión: 1.3.1</string>
+    <string name="version">Versión: 1.3.3</string>
     <string name="title_activity_battery">battery</string>
 
     <string name="hello">Información de la batería</string>
@@ -19,5 +19,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key"></string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,9 +53,9 @@ public class AppsListActivity extends ActionBarActivity {
         }
     }
 
-    private ListView list;
+    private GridView list;
     private void loadListView(){
-        list = (ListView)findViewById(R.id.apps_list);
+        list = (GridView)findViewById(R.id.apps_list);
 
         ArrayAdapter<AppDetail> adapter = new ArrayAdapter<AppDetail>(this,
                 R.layout.list_item,
@@ -96,7 +96,7 @@ public class AppsListActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_bateria, menu);
+        getMenuInflater().inflate(R.menu.menu_acerca, menu);
         return true;
     }
 
