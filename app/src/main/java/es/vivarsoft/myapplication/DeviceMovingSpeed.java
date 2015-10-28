@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,10 @@ public class DeviceMovingSpeed extends ActionBarActivity {
     private TextView textView13;
     private TextView textView15;
     private TextView textView16;
+    private Button button;
+
+    Double latitud = 40.4169473;
+    Double longitud = -3.7057172;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,7 @@ public class DeviceMovingSpeed extends ActionBarActivity {
         textView13 = (TextView)findViewById(R.id.textView13);
         textView15 = (TextView)findViewById(R.id.textView15);
         textView16 = (TextView)findViewById(R.id.textView16);
+        button = (Button)findViewById(R.id.button);
 
         /**/
         final LocationManager locationManager = (LocationManager) this
@@ -64,23 +71,48 @@ public class DeviceMovingSpeed extends ActionBarActivity {
                 textView12.setText("Longitud: " + longituddouble);
                 textView13.setText("Altitud: " + (int) location.getAltitude() + " Metros");
                 textView16.setText("Precisión: " + (int) location.getAccuracy() + " Metros");
+                latitud = location.getLatitude();
+                longitud = location.getLongitude();
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) { }
             public void onProviderEnabled(String provider)
             {
+                button.setEnabled(true);
                 textView15.setText("GPS: activado");
             }
             public void onProviderDisabled(String provider) {
+                button.setEnabled(false);
                 textView15.setText("GPS: desactivado");
                 Toast.makeText(getApplicationContext(),
                         "Active el sensor GPS", Toast.LENGTH_LONG)
                         .show();
             }
-
         };
+
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         /**/
+    }
+
+    public void shareonclick (View v)
+    {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Latitud: " + latitud + " | Longitud: " + longitud);
+
+        try {
+            startActivity(Intent.createChooser(sharingIntent, "Compartir loclización en..."));
+            finish();
+        } catch (android.content.ActivityNotFoundException ex) {
+
+        }
+    }
+
+    public void mapasonclick (View v)
+    {
+        Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+        i.setData(Uri.parse("geo:" + latitud + "," +longitud + "?q=" + latitud + "," + longitud));
+        startActivity(i);
     }
 
     public void showApps(View v){

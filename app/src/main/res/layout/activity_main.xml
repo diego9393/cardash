@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:background="#ffffff"
-    android:id="@+id/bateria">
+    android:id="@+id/bateria"
+    android:onClick="lteonclick">
 
     <TextClock
         android:layout_width="wrap_content"

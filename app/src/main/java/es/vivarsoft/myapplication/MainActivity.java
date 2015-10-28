@@ -3,6 +3,8 @@ package es.vivarsoft.myapplication;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,17 +12,31 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.media.audiofx.BassBoost;
+import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
+
+import java.lang.reflect.Method;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -102,7 +118,6 @@ public class MainActivity extends ActionBarActivity {
         imageButton7 = (ImageButton) findViewById(R.id.imageButton7);
         imageButton8 = (ImageButton) findViewById(R.id.imageButton8);
         imageButton9 = (ImageButton) findViewById(R.id.imageButton9);
-
     }
 
     /*notificacion carga de bateria*/
@@ -204,6 +219,10 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         startActivityForResult(intent, 0);
     }
+
+    /*gestos*/
+    /*fin gestos*/
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
