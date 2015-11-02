@@ -45,7 +45,6 @@ public class DeviceMovingSpeed extends ActionBarActivity {
         setContentView(R.layout.activity_device_moving_speed);
         textView2 = (TextView)findViewById(R.id.textView2);
         textView9 = (TextView)findViewById(R.id.textView9);
-        imageView2 = (ImageView)findViewById(R.id.imageView2);
         textView11 = (TextView)findViewById(R.id.textView11);
         textView12 = (TextView)findViewById(R.id.textView12);
         textView13 = (TextView)findViewById(R.id.textView13);

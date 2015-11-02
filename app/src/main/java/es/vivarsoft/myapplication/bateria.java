@@ -38,7 +38,6 @@ public class bateria extends ActionBarActivity {
         batteryTechnology = (TextView)findViewById(R.id.batterytechology);
         batteryStatus = (TextView)findViewById(R.id.batterystatus);
         batteryHealth = (TextView)findViewById(R.id.batteryhealth);
-        imageButton10 = (ImageButton)findViewById(R.id.imageButton10);
         imageButton12 = (ImageButton)findViewById(R.id.imageButton12);
         imageView = (ImageView)findViewById(R.id.imageView);
 

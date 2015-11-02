@@ -116,8 +116,6 @@ public class MainActivity extends ActionBarActivity {
         imageButton5 = (ImageButton) findViewById(R.id.imageButton5);
         imageButton6 = (ImageButton) findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) findViewById(R.id.imageButton7);
-        imageButton8 = (ImageButton) findViewById(R.id.imageButton8);
-        imageButton9 = (ImageButton) findViewById(R.id.imageButton9);
     }
 
     /*notificacion carga de bateria*/
@@ -170,6 +168,24 @@ public class MainActivity extends ActionBarActivity {
         }
     }
     /*fin bateria*/
+    public void wifionclick (View v)
+    {
+        WifiManager wifiManager = (WifiManager)getBaseContext().getSystemService(Context.WIFI_SERVICE);
+
+        if (wifiManager.getWifiState() == 1)
+        {
+            wifiManager.setWifiEnabled(true);
+        }
+        else if (wifiManager.getWifiState() == 3)
+        {
+            wifiManager.setWifiEnabled(false);
+        }
+    }
+    public void relojonclick(View v)
+    {
+        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.deskclock");
+        startActivity(LaunchIntent);
+    }
 
     public void bateriaclick(View v)
     {
@@ -219,9 +235,6 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         startActivityForResult(intent, 0);
     }
-
-    /*gestos*/
-    /*fin gestos*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
