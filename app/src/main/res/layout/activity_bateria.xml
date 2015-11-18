@@ -11,7 +11,9 @@
         android:text="Detalles de la batería"
         android:id="@+id/textView8"
         android:textSize="30dp"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/batterylevel"

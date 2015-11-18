@@ -183,8 +183,9 @@ public class MainActivity extends ActionBarActivity {
     }
     public void relojonclick(View v)
     {
-        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.deskclock");
-        startActivity(LaunchIntent);
+        Intent intent = new Intent("android.intent.action.QUICK_CLOCK");
+        startActivityForResult(intent, 0);
+
     }
 
     public void bateriaclick(View v)
