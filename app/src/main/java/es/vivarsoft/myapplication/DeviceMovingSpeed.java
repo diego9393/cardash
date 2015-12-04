@@ -42,6 +42,7 @@ public class DeviceMovingSpeed extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_device_moving_speed);
         textView2 = (TextView)findViewById(R.id.textView2);
         textView9 = (TextView)findViewById(R.id.textView9);
@@ -138,6 +139,12 @@ public class DeviceMovingSpeed extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+                return true;
+        }
 
         //noinspection SimplifiableIfStatement
         // TODO Auto-generated method stub

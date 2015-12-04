@@ -51,6 +51,7 @@ public class MainActivity extends ActionBarActivity {
     private ImageButton imageButton8;
     private ImageButton imageButton9;
     private TextView batteryLevel;
+    private Button button2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,21 @@ public class MainActivity extends ActionBarActivity {
         this.registerReceiver(this.myBatteryReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         /*fin bateria*/
+        wifibuttontext();
+    }
+
+    private void wifibuttontext()
+    {
+        WifiManager wifiManager = (WifiManager)getBaseContext().getSystemService(Context.WIFI_SERVICE);
+
+        if (wifiManager.getWifiState() == 1)
+        {
+            button2.setText("WIFI: On");
+        }
+        else if (wifiManager.getWifiState() == 3)
+        {
+            button2.setText("WIFI: Off");
+        }
     }
 
     public void showApps(View v){
@@ -116,6 +132,7 @@ public class MainActivity extends ActionBarActivity {
         imageButton5 = (ImageButton) findViewById(R.id.imageButton5);
         imageButton6 = (ImageButton) findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) findViewById(R.id.imageButton7);
+        button2 = (Button) findViewById(R.id.button2);
     }
 
     /*notificacion carga de bateria*/
@@ -175,10 +192,12 @@ public class MainActivity extends ActionBarActivity {
         if (wifiManager.getWifiState() == 1)
         {
             wifiManager.setWifiEnabled(true);
+            button2.setText("Wifi: Off");
         }
         else if (wifiManager.getWifiState() == 3)
         {
             wifiManager.setWifiEnabled(false);
+            button2.setText("Wifi: On");
         }
     }
     public void relojonclick(View v)

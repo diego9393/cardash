@@ -30,6 +30,7 @@ public class bateria extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_bateria);
 
         batteryLevel = (TextView)findViewById(R.id.batterylevel);
@@ -192,6 +193,12 @@ public class bateria extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+                return true;
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent ad = new Intent(this, acerca.class);
