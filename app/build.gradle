@@ -7,8 +7,8 @@ android {
         applicationId 'es.vivarsoft.simplecardash'
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 18
-        versionName "1.5.2"
+        versionCode 19
+        versionName "1.5.3"
     }
     buildTypes {
         release {
