@@ -35,6 +35,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Method;
 
@@ -58,6 +62,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         establecerIU();
+        Parse.initialize(this, "YRAWWiHGPP4MsZhHnTYxDhkIdRNjFu85m7NiGike", "u98RQ2W3FLhj5MzYLVvSZnXLchKlVw6hhF4dAK7j");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         /*deep link*/
         Intent intent = getIntent();
@@ -240,7 +246,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void clickwhatsapp(View v)
     {
-        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.googlequicksearchbox");
+        Intent LaunchIntent = new Intent("android.intent.action.ASSIST");
         startActivity(LaunchIntent);
     }
 
