@@ -1,10 +1,6 @@
 package es.vivarsoft.myapplication;
 
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +8,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,8 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class DeviceMovingSpeed extends ActionBarActivity {
     Context context;
@@ -44,6 +39,11 @@ public class DeviceMovingSpeed extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_device_moving_speed);
+        String versionapp = getApplicationContext().getResources().getString(R.string.version);
+        String appname = getApplicationContext().getResources().getString(R.string.app_name);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(appname);
+        actionBar.setSubtitle(versionapp);
         textView2 = (TextView)findViewById(R.id.textView2);
         textView9 = (TextView)findViewById(R.id.textView9);
         textView11 = (TextView)findViewById(R.id.textView11);

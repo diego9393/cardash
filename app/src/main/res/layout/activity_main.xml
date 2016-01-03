@@ -18,20 +18,19 @@
         android:layout_width="111dp"
         android:layout_height="111dp"
         android:id="@+id/imageButton"
-        android:layout_marginTop="42dp"
         android:src="@drawable/maps"
         android:onClick="imageclick"
-        android:layout_toLeftOf="@+id/imageButton2"
-        android:layout_toStartOf="@+id/imageButton2"
-        android:layout_below="@+id/textClock" />
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_alignLeft="@+id/imageButton4"
+        android:layout_alignStart="@+id/imageButton4" />
 
     <ImageButton
         android:layout_width="111dp"
         android:layout_height="111dp"
         android:id="@+id/imageButton2"
-        android:src="@drawable/camera"
+        android:src="@drawable/weather"
         android:onClick="clickcam"
-        android:layout_alignTop="@+id/imageButton"
+        android:layout_below="@+id/textView18"
         android:layout_alignLeft="@+id/imageButton5"
         android:layout_alignStart="@+id/imageButton5" />
 
@@ -60,7 +59,7 @@
         android:layout_height="111dp"
         android:id="@+id/imageButton5"
         android:src="@drawable/now"
-        android:onClick="clickwhatsapp"
+        android:onClick="clickassist"
         android:layout_alignTop="@+id/imageButton6"
         android:layout_centerHorizontal="true" />
 
@@ -91,6 +90,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Bateria:"
         android:id="@+id/batterylevel"
+        android:textAlignment="center"
         android:layout_below="@+id/textClock"
         android:layout_centerHorizontal="true" />
 
@@ -127,5 +127,15 @@
         android:layout_alignLeft="@+id/imageButton6"
         android:layout_alignStart="@+id/imageButton6"
         android:onClick="bateriaclick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Velocidad: Sin cobertura GPS"
+        android:id="@+id/textView18"
+        android:textAlignment="center"
+        android:layout_below="@+id/batterylevel"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -1,46 +1,40 @@
 package es.vivarsoft.myapplication;
 
+import android.app.Activity;
+import android.content.ContentValues;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
-import android.media.audiofx.BassBoost;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
-import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.Switch;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
-import com.parse.Parse;
-import com.parse.ParseInstallation;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Method;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -55,6 +49,7 @@ public class MainActivity extends ActionBarActivity {
     private ImageButton imageButton8;
     private ImageButton imageButton9;
     private TextView batteryLevel;
+    private TextView textView18;
     private Button button2;
 
     @Override
@@ -62,8 +57,31 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         establecerIU();
-        Parse.initialize(this, "YRAWWiHGPP4MsZhHnTYxDhkIdRNjFu85m7NiGike", "u98RQ2W3FLhj5MzYLVvSZnXLchKlVw6hhF4dAK7j");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        wifibuttontext();
+
+        /*localizacion*/
+        final LocationManager locationManager = (LocationManager) this
+                .getSystemService(Context.LOCATION_SERVICE);
+
+
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+
+                location.getLatitude();
+                float speed = (float) ((location.getSpeed()*3600)/1000);
+                textView18.setText("Velocidad: " + speed + " km/h");
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) { }
+            public void onProviderEnabled(String provider)
+            {
+            }
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        /*fin localizacion*/
 
         /*deep link*/
         Intent intent = getIntent();
@@ -72,13 +90,13 @@ public class MainActivity extends ActionBarActivity {
         /*fin deep link*/
 
         IntentFilter intentFilter =new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
         /*bateria*/
         batteryLevel = (TextView)findViewById(R.id.batterylevel);
 
         this.registerReceiver(this.myBatteryReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         /*fin bateria*/
-        wifibuttontext();
     }
 
     private void wifibuttontext()
@@ -93,11 +111,6 @@ public class MainActivity extends ActionBarActivity {
         {
             button2.setText("WIFI: Off");
         }
-    }
-
-    public void showApps(View v){
-        Intent i = new Intent(this, AppsListActivity.class);
-        startActivity(i);
     }
 
     private BroadcastReceiver myBatteryReceiver
@@ -131,6 +144,11 @@ public class MainActivity extends ActionBarActivity {
     /*Contruir interface*/
     public void establecerIU()
     {
+        String versionapp = getApplicationContext().getResources().getString(R.string.version);
+        String appname = getApplicationContext().getResources().getString(R.string.app_name);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(appname);
+        actionBar.setSubtitle(versionapp);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         imageButton2 = (ImageButton) findViewById(R.id.imageButton2);
         imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
@@ -138,6 +156,7 @@ public class MainActivity extends ActionBarActivity {
         imageButton5 = (ImageButton) findViewById(R.id.imageButton5);
         imageButton6 = (ImageButton) findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) findViewById(R.id.imageButton7);
+        textView18 = (TextView) findViewById(R.id.textView18);
         button2 = (Button) findViewById(R.id.button2);
     }
 
@@ -191,6 +210,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
     /*fin bateria*/
+
     public void wifionclick (View v)
     {
         WifiManager wifiManager = (WifiManager)getBaseContext().getSystemService(Context.WIFI_SERVICE);
@@ -206,6 +226,12 @@ public class MainActivity extends ActionBarActivity {
             button2.setText("Wifi: On");
         }
     }
+
+    public void showApps(View v){
+        Intent i = new Intent(this, AppsListActivity.class);
+        startActivity(i);
+    }
+
     public void relojonclick(View v)
     {
         Intent intent = new Intent("android.intent.action.QUICK_CLOCK");
@@ -244,7 +270,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(browserIntent);
     }
 
-    public void clickwhatsapp(View v)
+    public void clickassist(View v)
     {
         Intent LaunchIntent = new Intent("android.intent.action.ASSIST");
         startActivity(LaunchIntent);
@@ -258,8 +284,9 @@ public class MainActivity extends ActionBarActivity {
 
     public void clickcam (View v)
     {
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivityForResult(intent, 0);
+        Intent i = new Intent(this, weather.class);
+        startActivity(i);
+        //startActivity(new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE));
     }
 
     @Override

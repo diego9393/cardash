@@ -3,6 +3,7 @@ package es.vivarsoft.myapplication;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,11 @@ public class acerca extends ActionBarActivity {
         setContentView(R.layout.activity_acerca);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textView17 = (TextView)findViewById(R.id.textView17);
+        String versionapp = getApplicationContext().getResources().getString(R.string.version);
+        String appname = getApplicationContext().getResources().getString(R.string.app_name);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(appname);
+        actionBar.setSubtitle(versionapp);
     }
 
     public void licenseonclick (View v)

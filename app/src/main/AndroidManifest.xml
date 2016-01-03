@@ -7,49 +7,58 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="es.vivarsoft.myapplication.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true" >
-            <!--deep link-->
-            <intent-filter android:label="@string/app_name">
+
+            <!-- deep link -->
+            <intent-filter android:label="@string/app_name" >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "vivarsoft://cardash" -->
-                <data android:scheme="vivarsoft"
-                    android:host="cardash" />
+                <data
+                    android:host="cardash"
+                    android:scheme="vivarsoft" />
             </intent-filter>
-            <intent-filter android:label="@string/app_name">
+            <intent-filter android:label="@string/app_name" >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "https://vivarsoft.es/cardash" -->
-                <data android:scheme="http"
+                <data
                     android:host="vivarsoft.es"
-                    android:pathPrefix="/cardash" />
+                    android:pathPrefix="/cardash"
+                    android:scheme="http" />
             </intent-filter>
-            <!--fin deep link-->
-            <!--ejecutar google now-->
+            <!-- fin deep link -->
+            <!-- ejecutar google now -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--fin ejecutar google now-->
+            <!-- fin ejecutar google now -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -91,7 +100,11 @@
             android:label="@string/title_activity_device_moving_speed"
             android:screenOrientation="portrait" >
         </activity>
-
+        <activity
+            android:name=".weather"
+            android:label="@string/title_activity_weather"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.GridView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,11 @@ public class AppsListActivity extends ActionBarActivity {
         loadApps();
         loadListView();
         addClickListener();
+        String versionapp = getApplicationContext().getResources().getString(R.string.version);
+        String appname = getApplicationContext().getResources().getString(R.string.app_name);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(appname);
+        actionBar.setSubtitle(versionapp);
     }
 
     private PackageManager manager;

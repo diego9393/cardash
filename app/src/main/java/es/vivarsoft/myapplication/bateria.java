@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,18 +21,20 @@ public class bateria extends ActionBarActivity {
 
     private Button button;
     private ImageButton imageButton10;
-    private ImageButton imageButton12;
     private ImageView imageView;
     private TextView batteryLevel, batteryVoltage, batteryTemperature,
             batteryTechnology, batteryStatus, batteryHealth;
 
-
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_bateria);
+        String versionapp = getApplicationContext().getResources().getString(R.string.version);
+        String appname = getApplicationContext().getResources().getString(R.string.app_name);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(appname);
+        actionBar.setSubtitle(versionapp);
 
         batteryLevel = (TextView)findViewById(R.id.batterylevel);
         batteryVoltage = (TextView)findViewById(R.id.batteryvoltage);
@@ -39,7 +42,6 @@ public class bateria extends ActionBarActivity {
         batteryTechnology = (TextView)findViewById(R.id.batterytechology);
         batteryStatus = (TextView)findViewById(R.id.batterystatus);
         batteryHealth = (TextView)findViewById(R.id.batteryhealth);
-        imageButton12 = (ImageButton)findViewById(R.id.imageButton12);
         imageView = (ImageView)findViewById(R.id.imageView);
 
         this.registerReceiver(this.myBatteryReceiver,
